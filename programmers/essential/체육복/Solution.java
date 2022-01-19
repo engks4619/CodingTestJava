@@ -13,12 +13,12 @@ class Solution {
 
 		for (int i = 0; i < n; i++) {
 			if (state[i] < 0) {
-				if (i-1 >= 0 && state[i-1] > 0) {
+				if (i - 1 >= 0 && state[i - 1] > 0) {
 					state[i]++;
-					state[i-1]--;
-				}else if(i+1 < n && state[i+1] > 0) {
+					state[i - 1]--;
+				} else if (i + 1 < n && state[i + 1] > 0) {
 					state[i]++;
-					state[i+1]--;
+					state[i + 1]--;
 				}
 			}
 		}
