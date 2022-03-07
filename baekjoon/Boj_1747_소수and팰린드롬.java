@@ -19,7 +19,7 @@ public class Boj_1747_소수and팰린드롬 {
 	static boolean isPrime(int n) {
 		if(n <= 1) 
 			return false;		
-		for(int i = 2; i < Math.sqrt(n); i++) {
+		for(int i = 2; i <= Math.sqrt(n); i++) {
 			if(n % i == 0)
 				return false;
 		}
