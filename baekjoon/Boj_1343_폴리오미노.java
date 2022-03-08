@@ -47,7 +47,6 @@ public class Boj_1343_폴리오미노 {
 			}
 			count -= 2;
 			q.offer("BB");						
-			
 		}
 	}
 }
