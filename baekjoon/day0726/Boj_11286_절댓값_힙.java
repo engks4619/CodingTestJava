@@ -23,6 +23,4 @@ public class Boj_11286_절댓값_힙 {
         System.out.println(sb);
         in.close();
     }
-
-
 }
