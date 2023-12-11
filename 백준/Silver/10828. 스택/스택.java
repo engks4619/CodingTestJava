@@ -19,25 +19,29 @@ public class Main {
             Integer res = Operator.valueOf(operation).execute(num);
             if(res != null) sb.append(res).append("\n");
         }
-        if(sb.length() > 0) sb.setLength(sb.length()-1);
+        if(sb.length() > 0) sb.setLength(sb.length() - 1);
         System.out.println(sb);
         in.close();
     }
 
     enum Operator {
-        push("push", stack::push,null),
-        pop("pop",null, () -> !stack.isEmpty() ? stack.pop() : -1),
-        size("size", null, () -> stack.size()),
-        empty("empty", null, () -> stack.isEmpty() ? 1 : 0),
-        top("top", null, () -> !stack.isEmpty() ? stack.peek() : -1);
+        push("push", stack::push),
+        pop("pop", () -> !stack.isEmpty() ? stack.pop() : -1),
+        size("size", () -> stack.size()),
+        empty("empty", () -> stack.isEmpty() ? 1 : 0),
+        top("top", () -> !stack.isEmpty() ? stack.peek() : -1);
 
         private String operator;
         private IntConsumer intConsumer;
         private IntSupplier intSupplier;
 
-        Operator(String operator, IntConsumer intConsumer, IntSupplier intSupplier){
+        Operator(String operator, IntConsumer intConsumer){
             this.operator = operator;
             this.intConsumer = intConsumer;
+        }
+        
+        Operator(String operator, IntSupplier intSupplier){
+            this.operator = operator;
             this.intSupplier = intSupplier;
         }
 
