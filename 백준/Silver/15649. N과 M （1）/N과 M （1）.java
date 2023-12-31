@@ -17,12 +17,12 @@ public class Main {
         M = Integer.parseInt(st.nextToken());
         selected = new int[M];
         visited = new boolean[N + 1];
-        combination( 0);
+        permutation( 0);
         System.out.print(sb);
         in.close();
     }
 
-    static void combination(int cnt){
+    static void permutation(int cnt){
         if(cnt == M){
             for (int num : selected) {
                 sb.append(num).append(" ");
@@ -34,7 +34,7 @@ public class Main {
             if(visited[i]) continue;
             visited[i] = true;
             selected[cnt] = i;
-            combination(cnt + 1);
+            permutation(cnt + 1);
             visited[i] = false;
         }
     }
