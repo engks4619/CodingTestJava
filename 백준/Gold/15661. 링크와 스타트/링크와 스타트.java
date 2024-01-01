@@ -39,18 +39,20 @@ public class Main {
             return;
         }
 
-        int score = 0;
-        for (int i = 0; i < aCnt; i++) {
-            score += scoreBoard[teamA[i]][cnt] + scoreBoard[cnt][teamA[i]];
-        }
         teamA[aCnt] = cnt;
+        int score = getScore(teamA, cnt, aCnt);
         go(cnt + 1, aCnt + 1, bCnt, aScore + score, bScore);
 
-        score = 0;
-        for (int i = 0; i < bCnt; i++) {
-            score += scoreBoard[teamB[i]][cnt] + scoreBoard[cnt][teamB[i]];
-        }
         teamB[bCnt] = cnt;
+        score = getScore(teamB, cnt, bCnt);
         go(cnt + 1, aCnt, bCnt + 1, aScore, bScore + score);
+    }
+
+    static int getScore(int[] team, int idx, int teamCnt) {
+        int score = 0;
+        for (int i = 0; i < teamCnt; i++) {
+            score += scoreBoard[team[i]][idx] + scoreBoard[idx][team[i]];
+        }
+        return score;
     }
 }
