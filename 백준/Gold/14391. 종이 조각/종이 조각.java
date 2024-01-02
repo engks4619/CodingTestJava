@@ -54,26 +54,18 @@ public class Main {
     static int getSum(boolean[][] selected){
         int sum = 0;
         for (int i = 0; i < N; i++) {
-            StringBuilder sb = new StringBuilder();
-            for (int j = 0; j < M; j++) {
-                if(selected[i][j]) sb.append(board[i][j]);
-                else {
-                    sum += Integer.parseInt(!sb.toString().isEmpty() ? sb.toString() : "0");
-                    sb = new StringBuilder();
-                }
+            int cnt = 0;
+            for (int j = M - 1; j >= 0; j--) {
+                if(selected[i][j]) sum += board[i][j] * Math.pow(10, cnt++);
+                else cnt = 0;
             }
-            sum += Integer.parseInt(!sb.toString().isEmpty() ? sb.toString() : "0");
         }
         for (int j = 0; j < M; j++) {
-            StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < N; i++) {
-                if(!selected[i][j]) sb.append(board[i][j]);
-                else {
-                    sum += Integer.parseInt(!sb.toString().isEmpty() ? sb.toString() : "0");
-                    sb = new StringBuilder();
-                }
+            int cnt = 0;
+            for (int i = N - 1; i >= 0; i--) {
+                if(!selected[i][j]) sum += board[i][j] * Math.pow(10, cnt++);
+                else cnt = 0;
             }
-            sum += Integer.parseInt(!sb.toString().isEmpty() ? sb.toString() : "0");
         }
         return sum;
     }
