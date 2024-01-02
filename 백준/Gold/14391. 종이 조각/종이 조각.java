@@ -2,14 +2,13 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.util.ArrayDeque;
-import java.util.Queue;
 import java.util.StringTokenizer;
 
 public class Main {
 
-    static int N, M;
+    static int N, M, maxSum;
     static int[][] board;
+    static boolean[][] selected;
 
     public static void main(String[] args) throws Exception {
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
@@ -24,34 +23,27 @@ public class Main {
                 board[i][j] = str.charAt(j) - '0';
             }
         }
-        int maxSum = 0;
-        Queue<boolean[][]> queue = getDividedBoardQueue();
-        while(!queue.isEmpty()){
-            maxSum = Math.max(maxSum, getSum(queue.poll()));
-        }
+        go();
         bw.write(maxSum + "\n");
         bw.flush();
         bw.close();
         in.close();
     }
 
-    static Queue<boolean[][]> getDividedBoardQueue(){
-        Queue<boolean[][]> queue = new ArrayDeque<>();
+    static void go(){
         for (int s = 0; s < (1 << N * M); s++) {
-            boolean[][] board = new boolean[N][M];
+            selected = new boolean[N][M];
             for (int i = 0; i < N; i++) {
                 for (int j = 0; j < M; j++) {
                     int k = i * M + j;
-                    if((s & (1 << k)) != 0) board[i][j] = true;
+                    if((s & (1 << k)) != 0) selected[i][j] = true;
                 }
             }
-            queue.offer(board);
+            maxSum = Math.max(maxSum, getSum());
         }
-
-        return queue;
     }
 
-    static int getSum(boolean[][] selected){
+    static int getSum(){
         int sum = 0;
         for (int i = 0; i < N; i++) {
             int cnt = 0;
