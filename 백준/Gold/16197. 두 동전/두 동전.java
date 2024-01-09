@@ -3,7 +3,6 @@ import java.io.BufferedWriter;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.ArrayDeque;
-import java.util.Objects;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
@@ -13,6 +12,7 @@ public class Main {
     static char[][] board;
     static int[] dr = {0, 0, 1, -1};
     static int[] dc = {1, -1, 0, 0};
+    static boolean[][][][] visited;
 
     public static void main(String[] args) throws Exception {
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
@@ -21,6 +21,7 @@ public class Main {
         N = Integer.parseInt(st.nextToken());
         M = Integer.parseInt(st.nextToken());
         board = new char[N + 2][M + 2];
+        visited = new boolean[N + 2][M + 2][N + 2][M + 2];
         Point coinA = null;
         Point coinB = null;
         for (int i = 1; i <= N; i++) {
@@ -45,6 +46,7 @@ public class Main {
     static void go(Point coinA, Point coinB) {
         Queue<Point[]> queue = new ArrayDeque<>();
         queue.offer(new Point[] {coinA, coinB});
+        visited[coinA.r][coinA.c][coinB.r][coinB.c] = true;
         while(!queue.isEmpty()){
             Point[] curr = queue.poll();
             coinA = curr[0];
@@ -58,7 +60,8 @@ public class Main {
             for (int d = 0; d < dr.length; d++) {
                 Point nCoinA = getNextCoin(coinA, d);
                 Point nCoinB = getNextCoin(coinB, d);
-                if(nCoinA.equals(coinA) && nCoinB.equals(coinB)) continue;
+                if(visited[nCoinA.r][nCoinA.c][nCoinB.r][nCoinB.c]) continue;
+                visited[nCoinA.r][nCoinA.c][nCoinB.r][nCoinB.c] = true;
                 queue.offer(new Point[] {nCoinA, nCoinB});
             }
         }
@@ -88,19 +91,6 @@ public class Main {
             this.r = r;
             this.c = c;
             this.cnt = cnt;
-        }
-
-        @Override
-        public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
-            Point point = (Point) o;
-            return r == point.r && c == point.c;
-        }
-
-        @Override
-        public int hashCode() {
-            return Objects.hash(r, c);
         }
     }
 
