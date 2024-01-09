@@ -3,6 +3,7 @@ import java.io.BufferedWriter;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.ArrayDeque;
+import java.util.Objects;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
@@ -57,6 +58,7 @@ public class Main {
             for (int d = 0; d < dr.length; d++) {
                 Point nCoinA = getNextCoin(coinA, d);
                 Point nCoinB = getNextCoin(coinB, d);
+                if(nCoinA.equals(coinA) && nCoinB.equals(coinB)) continue;
                 queue.offer(new Point[] {nCoinA, nCoinB});
             }
         }
@@ -86,6 +88,19 @@ public class Main {
             this.r = r;
             this.c = c;
             this.cnt = cnt;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            Point point = (Point) o;
+            return r == point.r && c == point.c;
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(r, c);
         }
     }
 
