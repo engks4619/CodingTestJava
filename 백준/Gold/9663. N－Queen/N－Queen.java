@@ -10,9 +10,6 @@ public class Main {
     static boolean[] visitedDiagA;
     static boolean[] visitedDiagB;
 
-    static int[] dr = {-1, 1, 0, 0, 1, -1, 1, -1};
-    static int[] dc = {0, 0, -1, 1, 1, -1, -1, 1};
-
     public static void main(String[] args) throws Exception {
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
