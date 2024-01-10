@@ -38,6 +38,7 @@ public class Main {
 
     static void dfs(int r, int c, int cnt) {
         maxCnt = Math.max(maxCnt, cnt);
+        if(maxCnt >= 26) return;
         for (int d = 0; d < dr.length; d++) {
             int nr = r + dr[d];
             int nc = c + dc[d];
