@@ -44,7 +44,7 @@ public class Main {
         for (int i = curr; i < 26; i++) {
             if(alpha[i]) continue;
             alpha[i] = true;
-            go(i, cnt + 1);
+            go(i + 1, cnt + 1);
             alpha[i] = false;
         }
     }
