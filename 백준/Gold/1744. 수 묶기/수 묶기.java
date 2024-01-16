@@ -32,7 +32,7 @@ public class Main {
             int a = pq.poll();
             if(!pq.isEmpty()) {
                 int b = pq.poll();
-                sum += a * b > a + b ? a * b : a + b;
+                sum += Math.max(a * b, a + b);
             }
             else sum += a;
         }
