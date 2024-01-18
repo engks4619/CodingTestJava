@@ -29,7 +29,7 @@ public class Main {
         if(R % 2 == 0 && C % 2 == 0) go();
         else {
             if(R % 2 != 0) goFull('Z');
-            else goFull('D');
+            else goFull('N');
         }
 
         bw.write(sb.toString());
@@ -100,6 +100,7 @@ public class Main {
         UP = u.toString();
         DOWN = d.toString();
     }
+
     static void goFull(char d) {
         int size = d == 'Z' ? R : C;
         for (int i = 0; i < size; i++) {
