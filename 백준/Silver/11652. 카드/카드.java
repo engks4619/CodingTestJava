@@ -18,11 +18,11 @@ public class Main {
         int maxCnt = 0;
         long answer = Long.MAX_VALUE;
         for(Long key : cntMap.keySet()) {
-            if(cntMap.get(key) > maxCnt) {
-                answer = key;
-                maxCnt = cntMap.get(key);
-            } else if (cntMap.get(key) == maxCnt)
-                answer = Math.min(answer, key);
+            int cnt = cntMap.get(key);
+            if(cnt >= maxCnt) {
+                answer = cntMap.get(key) == maxCnt ? Math.min(answer, key) : key;
+                maxCnt = cnt;
+            }
         }
         bw.write(answer + "\n");
         bw.flush();
