@@ -20,15 +20,12 @@ public class Main {
             arr[i] = Integer.parseInt(st.nextToken());
         }
         int left = 0;
-        int right = 5000 * 10000;
+        int right = 10000;
         while(left <= right) {
             int mid = (left + right) / 2;
-            if(isPossible(mid)) {
-                right = mid - 1;
-            }
+            if(isPossible(mid)) right = mid - 1;
             else left = mid + 1;
         }
-
         bw.write(left + "\n");
         bw.flush();
         bw.close();
@@ -50,4 +47,5 @@ public class Main {
         }
         return cnt <= M;
     }
+
 }
