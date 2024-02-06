@@ -27,17 +27,17 @@ public class Main {
     static void permutation(int depth, String str) {
         if(depth == A.length()) {
             int num = Integer.parseInt(str);
-            if(num < Math.pow(10, A.length() - 1)) return;
             if(num < B) maxValue = Math.max(maxValue, Integer.parseInt(str));
             return;
         }
         for (int i = 0; i < A.length(); i++) {
             if(visited[i]) continue;
+            String next = str + A.charAt(i);
+            if(Integer.parseInt(next) == 0) continue;
             visited[i] = true;
-            permutation(depth + 1, str + A.charAt(i));
+            permutation(depth + 1, next);
             visited[i] = false;
         }
-
     }
 
 }
