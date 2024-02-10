@@ -44,7 +44,6 @@ public class Main {
                 }
             }
             int answer = minMoveCnt == MAX_CNT ? -1 : minMoveCnt;
-            if(emptyCnt == 1) answer = 0;
             bw.write("Case " + TC++ + ": " + answer + "\n");
         }
         bw.flush();
