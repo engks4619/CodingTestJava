@@ -24,7 +24,7 @@ public class Main {
             int b = Integer.parseInt(st.nextToken());
             board[a][b] = true;
         }
-        go(1, 0);
+        go(1, 1, 0);
         int answer = isSolved ? minCnt : -1;
         bw.write(answer + "\n");
         bw.flush();
@@ -32,18 +32,20 @@ public class Main {
         in.close();
     }
 
-    static void go(int r, int cnt) {
+    static void go(int r, int c, int cnt) {
         if(cnt > 3 || minCnt <= cnt) return;
         if(checkNumSolved()) {
             isSolved = true;
             minCnt = Math.min(minCnt, cnt);
             return;
         }
+        int j = c;
         for (int i = r; i <= R; i++) {
-            for (int j = 1; j < C; j++) {
+            if(i != r) j = 1;
+            for (; j < C; j++) {
                 if(board[i][j] || board[i][j - 1]) continue;
                 board[i][j] = true;
-                go(i, cnt + 1);
+                go(i, j, cnt + 1);
                 board[i][j] = false;
             }
         }
