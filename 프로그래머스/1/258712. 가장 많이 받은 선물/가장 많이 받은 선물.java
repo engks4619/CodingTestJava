@@ -3,7 +3,6 @@ import java.util.*;
 class Solution {
     
     static Map<String, Integer> friendMap = new HashMap<>();
-    static Map<String, Integer> scoreMap = new HashMap<>();
     static int N;
     static int[][] giftLogArr;
     static int[] giftCntArr;
@@ -16,10 +15,6 @@ class Solution {
         giftScoreArr = new int[N];
         for(int i = 0; i < N; i++) {
             friendMap.put(friends[i], i);
-        }
-        
-        for(String name : friends) {
-            scoreMap.put(name, 0);
         }
         
         for(String str : gifts) {
