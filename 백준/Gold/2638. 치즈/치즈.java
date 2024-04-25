@@ -67,11 +67,6 @@ public class Main {
                 cheeseList.remove(i);
             }
         }
-        for (int i = 0; i < N; i++) {
-            for (int j = 0; j < M; j++) {
-                if(board[i][j] == 1 && checkIsMelt(i, j)) meltPosQueue.offer(new int[] {i, j});
-            }
-        }
         while(!meltPosQueue.isEmpty()) {
             int[] pos = meltPosQueue.poll();
             board[pos[0]][pos[1]] = -1;
