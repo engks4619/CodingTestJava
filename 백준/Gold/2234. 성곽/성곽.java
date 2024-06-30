@@ -30,22 +30,17 @@ public class Main {
                     bfs(i, j, ++roomNum);
             }
         }
-        for (int i = 0; i < N; i++) {
-            for (int j = 0; j < M; j++) {
-                if(!visited[i][j])
-                    updateMaxBreakableRoomCnt(i, j);
-            }
-        }
+        updateMaxBreakableRoomCnt();
         System.out.println(roomNum);
         System.out.println(maxRoomCnt);
         System.out.println(maxBreakableRoomCnt);
         in.close();
     }
 
-    static void updateMaxBreakableRoomCnt(int sR, int sC) {
+    static void updateMaxBreakableRoomCnt() {
         Queue<int[]> queue = new ArrayDeque<>();
-        queue.offer(new int[] {sR, sC, room[sR][sC]});
-        visited[sR][sC] = true;
+        queue.offer(new int[] {0, 0, room[0][0]});
+        visited[0][0] = true;
         while(!queue.isEmpty()) {
             int[] curr = queue.poll();
             int r = curr[0];
