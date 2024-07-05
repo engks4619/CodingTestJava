@@ -7,16 +7,14 @@ import java.util.StringTokenizer;
 
 public class Main {
 
-    static Queue<Node> queue;
-    static PriorityQueue<Node> pq;
+    static Queue<Node> queue = new ArrayDeque<>();
+    static PriorityQueue<Node> pq = new PriorityQueue<>((o1, o2) -> o2.priority - o1.priority);
 
     public static void main(String[] args) throws Exception {
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
         StringBuilder sb = new StringBuilder();
         int TC = Integer.parseInt(in.readLine());
         while(TC-- > 0) {
-            queue = new ArrayDeque<>();
-            pq = new PriorityQueue<>((o1, o2) -> o2.priority - o1.priority);
             StringTokenizer st = new StringTokenizer(in.readLine());
             int N = Integer.parseInt(st.nextToken());
             int idx = Integer.parseInt(st.nextToken());
@@ -39,6 +37,8 @@ public class Main {
                 if(node.idx == idx) break;
             }
             sb.append(time).append("\n");
+            queue.clear();
+            pq.clear();
         }
         System.out.print(sb);
         in.close();
