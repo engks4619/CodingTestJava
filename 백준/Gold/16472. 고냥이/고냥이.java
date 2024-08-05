@@ -13,22 +13,23 @@ public class Main {
         int maxLength = 0;
         while(r < str.length()) {
             char c = str.charAt(r);
-            if(cnt < N) {
-                if(cntArr[c - 'a'] == 0) cnt++;
+            // 이미 사용된 알파벳인 경우
+            if(cntArr[c - 'a'] > 0) {
                 cntArr[c - 'a']++;
                 maxLength = Math.max(maxLength, r - l + 1);
                 r++;
-            } else {
-                if(cntArr[c - 'a'] != 0) {
-                    cntArr[c - 'a']++;
-                    maxLength = Math.max(maxLength, r - l + 1);
-                    r++;
-                } else {
-                    int lc = str.charAt(l);
-                    cntArr[lc - 'a']--;
-                    if(cntArr[lc - 'a'] == 0) cnt--;
-                    l++;
-                }
+                continue;
+            }
+            // 사용되지 않았던 알파벳인 경우
+            if(cnt < N) { // 사용할 수 있는 횟수가 남은 경우
+                cntArr[c - 'a']++;
+                cnt++;
+                maxLength = Math.max(maxLength, r - l + 1);
+                r++;
+            } else { // 사용할 수 있는 횟수가 없는 경우
+                do cntArr[str.charAt(l) - 'a']--;
+                while(cntArr[str.charAt(l++) - 'a'] > 0);
+                cnt--;
             }
         }
         System.out.println(maxLength);
