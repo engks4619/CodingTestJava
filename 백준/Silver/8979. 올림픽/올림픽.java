@@ -17,16 +17,19 @@ public class Main {
             int bronze = Integer.parseInt(st.nextToken());
             list.add(new Country(num, gold, silver, bronze));
         }
-        int rank = 1;
         Collections.sort(list);
-        for (int i = 1; i < N; i++) {
-            Country curr = list.get(i);
-            Country prev = list.get(i - 1);
-            if(prev.gold == curr.gold
-                    && prev.silver == curr.silver
-                    && prev.bronze == curr.bronze) rank = i;
-            else rank = i + 1;
-            if(curr.num == K) break;
+        int rank = 1;
+        if(list.get(0).num == K) rank = 1;
+        else {
+            for (int i = 1; i < N; i++) {
+                Country curr = list.get(i);
+                Country prev = list.get(i - 1);
+                if(prev.gold == curr.gold
+                        && prev.silver == curr.silver
+                        && prev.bronze == curr.bronze) rank = i;
+                else rank = i + 1;
+                if(curr.num == K) break;
+            }
         }
         System.out.println(rank);
         in.close();
@@ -48,10 +51,10 @@ public class Main {
         @Override
         public int compareTo(Country o) {
             if(this.gold != o.gold)
-                return this.gold - o.gold;
+                return o.gold - this.gold;
             if(this.silver != o.silver)
-                return this.silver - o.silver;
-            return this.bronze - o.bronze;
+                return o.silver - this.silver;
+            return o.bronze - this.bronze;
         }
     }
 }
